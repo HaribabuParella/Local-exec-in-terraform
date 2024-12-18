@@ -1,7 +1,6 @@
 provider "google" {
-  project     = "hari-cloud-first-project"
+  project     = "hari-gcp-learning-project"
   region      = "us-central1"
-  credentials = file("terraform.json")
 }
 
 resource "google_compute_instance" "default" {
@@ -17,6 +16,10 @@ resource "google_compute_instance" "default" {
         my_label = "value"
       }
     }
+  }
+
+ provisioner "local-exec" {
+    command = "gcloud compute instances create my-instance-2 --zone us-central1-c"
   }
 
   network_interface {
